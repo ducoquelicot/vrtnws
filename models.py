@@ -8,7 +8,7 @@ class Dataset(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String(200), index=True)
-    area = Column(String(50))
+    area = Column(String(50), index=True)
     source = Column(String(50))
     file_type = Column(String(50))
     link = Column(Text)
@@ -16,6 +16,7 @@ class Dataset(Base):
     date_obtained = Column(String(50))
     clean = Column(Boolean)
     tags = Column(Text, index=True)
+    file = Column(LargeBinary)
 
     def __repr__(self):
         return "Dataset: {}. Source: {}. Tags: {}".format(self.name, self.source, self.tags)
