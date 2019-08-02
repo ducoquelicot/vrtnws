@@ -11,6 +11,12 @@ requests = "*"
 pylint = "*"
 sqlalchemy = "*"
 alembic = "*"
+flask = "*"
+flask-sqlalchemy = "*"
+flask-migrate = "*"
+flask-marshmallow = "*"
+marshmallow-sqlalchemy = "*"
+str2bool = "*"
 
 [requires]
 python_version = "3.7"
