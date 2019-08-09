@@ -17,6 +17,8 @@ flask-migrate = "*"
 flask-marshmallow = "*"
 marshmallow-sqlalchemy = "*"
 str2bool = "*"
+elasticsearch = "*"
+elasticsearch-dsl = "*"
 
 [requires]
 python_version = "3.7"

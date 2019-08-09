@@ -6,4 +6,4 @@ class Config(object):
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
         'sqlite:///{}'.format(os.path.join(basedir, 'datasets.db'))
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    
+    ELASTICSEARCH_URL = os.environ.get('ELASTICSEARCH_URL')
