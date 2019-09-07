@@ -1,12 +1,13 @@
 from app import datasets, db
 from app.models import Dataset, DatasetSchema
-from flask import request, jsonify
+from flask import request, jsonify, send_file
 from str2bool import str2bool
+from io import BytesIO
 
 data_schema = DatasetSchema()
 datas_schema = DatasetSchema(many=True)
 
-@datasets.route('/add_dataset', methods=['POST'])
+@datasets.route('/api/add_dataset', methods=['POST'])
 def create_dataset():
     name = request.form['name']
     area = request.form['area']
@@ -25,9 +26,9 @@ def create_dataset():
     db.session.add(new_dataset)
     db.session.commit()
 
-    return "New dataset added. The uploaded file was {}".format(file.filename), 200
+    return jsonify({'status' : 'success'}), 200
 
-@datasets.route('/search_dataset', methods=['GET'])
+@datasets.route('/api/search_dataset', methods=['GET'])
 def search_dataset():
     qstring = request.form['query']
     results, total = Dataset.search(qstring)
@@ -45,17 +46,16 @@ def search_dataset():
             'date_obtained' : result.date_obtained,
             'clean' : str(bool(result.clean)),
             'tags' : result.tags,
-        #    'file' : str(result.file)
+            'id' : result.id,
         }
         output["results"].append(values)
 
     return jsonify(output), 200
 
-@datasets.route('/dataset/<id>', methods=['GET', 'PUT'])
+@datasets.route('/api/dataset/<id>', methods=['GET', 'PUT'])
 def update_dataset(id):
     if request.method == 'GET':
         ds = Dataset.query.get_or_404(id)
-        # return data_schema.jsonify(ds)
 
         output = {
             'name' : ds.name,
@@ -66,10 +66,9 @@ def update_dataset(id):
             'dictionary' : str(bool(ds.dictionary)),
             'date_obtained' : ds.date_obtained,
             'clean' : str(bool(ds.clean)),
-            'tags' : ds.tags,
-        #   'file' : str(ds.file)
+            'tags' : ds.tags
         }
-        return jsonify(output), 200        
+        return jsonify(output), 200
 
     elif request.method == 'PUT':
         ds = Dataset.query.get_or_404(id)
@@ -83,7 +82,6 @@ def update_dataset(id):
         date_obtained = request.form['date_obtained']
         clean = str2bool(request.form['clean'])
         tags = request.form['tags']
-        file = request.files['file']
 
         ds.name = name
         ds.area = area
@@ -94,7 +92,20 @@ def update_dataset(id):
         ds.date_obtained = date_obtained
         ds.clean = clean
         ds.tags = tags
-        ds.file = file
 
         db.session.commit()
-        return "Successfully updated dataset {}".format(file.filename), 200
+        return jsonify({'status' : 'success'}), 200
+
+@datasets.route('/api/download/dataset/<id>', methods=['GET'])
+def download_ds(id):
+    ds = Dataset.query.get_or_404(id)
+    filename = '{}.{}'.format(ds.name, ds.file_type.lower())
+    return send_file(BytesIO(ds.file), attachment_filename=filename, as_attachment=True)
+
+@datasets.route('/api/delete/dataset/<id>', methods=['DELETE'])
+def delete_dataset(id):
+    ds = Dataset.query.get_or_404(id)
+    db.session.delete(ds)
+    db.session.commit()
+
+    return jsonify({'status' : 'success'}), 200

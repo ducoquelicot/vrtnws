@@ -6,10 +6,10 @@ def add_to_index(model):
     payload = {}
     for field in model.__searchable__:
         payload[field] = getattr(model, field)
-    es.index(index="datasets", doc_type=model.file_type, id=model.id, body=payload)
+    es.index(index="datasets", doc_type='_doc', id=model.id, body=payload)
 
 def remove_from_index(model):
-    es.delete(index='datasets', doc_type=model.file_type, id=model.id)
+    es.delete(index='datasets', doc_type='_doc', id=model.id)
 
 def query_index(qstring):
     q = Q("query_string",
