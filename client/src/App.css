@@ -1,0 +1,49 @@
+#root {
+  padding: 100px;
+}
+
+.Tile {
+  position: relative;
+  background-color: rgb(243, 240, 240);
+  border-radius: 25px;
+  min-height: 300px;
+  max-height: 700px;
+  text-align: center;
+  color: rgb(87, 87, 134);
+  box-shadow: 10px 10px 5px grey;
+}
+
+.Grid {
+  width: 1000px;
+  margin: auto;
+  display: grid;
+  grid-gap: 40px;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  align-items: center;
+}
+
+h1 {
+  padding: 20px;
+}
+
+.SearchForm {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.SearchForm input {
+  width: 300px;
+}
+
+.Button {
+	background: none;
+	color: inherit;
+	border: none;
+	padding-left: 20;
+  font: inherit;
+  font-size: 19px;
+	cursor: pointer;
+	outline: inherit;
+}
