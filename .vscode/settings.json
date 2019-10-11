@@ -1,4 +1,6 @@
 {
-    "python.pythonPath": "/home/fabienne/.local/share/virtualenvs/vrtnws-CCFcdIir/bin/python",
-    "workbench.colorCustomizations": {}
+    "python.pythonPath": "/Users/fmeijer/.local/share/virtualenvs/vrtnws-acpwLJiS/bin/python",
+    "workbench.colorCustomizations": {},
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true
 }

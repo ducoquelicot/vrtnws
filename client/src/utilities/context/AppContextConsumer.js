@@ -7,7 +7,7 @@ const withContext = Component => {
     render() {
       return (
         <AppContext.Consumer>
-          {context => <Component context={context} {...this.props} />}
+          {context => <Component ctxt={context} {...this.props} />}
         </AppContext.Consumer>
       );
     }
