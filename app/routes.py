@@ -30,7 +30,7 @@ def create_dataset():
 
 @datasets.route('/api/search_dataset', methods=['GET'])
 def search_dataset():
-    qstring = request.form['query']
+    qstring = request.args.get('query')
     results, total = Dataset.search(qstring)
 
     output = {}

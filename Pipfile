@@ -19,6 +19,7 @@ marshmallow-sqlalchemy = "*"
 str2bool = "*"
 elasticsearch = "*"
 elasticsearch-dsl = "*"
+flask-cors = "*"
 
 [requires]
 python_version = "3.7"
