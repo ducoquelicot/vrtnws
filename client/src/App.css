@@ -1,16 +1,18 @@
 #root {
-  padding: 100px;
+  padding: 35px;
+  font-family: 'Raleway', sans-serif;
 }
 
 .Tile {
   position: relative;
-  background-color: rgb(243, 240, 240);
-  border-radius: 25px;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid #CBCBCB;
+  border-radius: 4px;
   min-height: 300px;
   max-width: 100%;
   text-align: center;
-  color: rgb(87, 87, 134);
-  box-shadow: 10px 10px 5px grey;
+  color: rgb(10, 82, 132);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
 .Grid {
@@ -18,12 +20,14 @@
   margin: auto;
   display: grid;
   grid-gap: 40px;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   align-items: center;
 }
 
 h1 {
   padding: 20px;
+  font-weight: 600;
+  font-size: 30px;
 }
 
 .SearchForm {
@@ -34,7 +38,11 @@ h1 {
 }
 
 .SearchForm input {
-  max-width: 300px;
+  min-width: 250px;
+}
+
+.UploadForm input {
+  min-width: 200px;
 }
 
 .Button {
@@ -46,4 +54,13 @@ h1 {
   font-size: 19px;
 	cursor: pointer;
 	outline: inherit;
+}
+
+.Result {
+  margin: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(10, 82, 132);
 }

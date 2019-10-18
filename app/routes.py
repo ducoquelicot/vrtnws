@@ -34,6 +34,7 @@ def search_dataset():
     results, total = Dataset.search(qstring)
 
     output = {}
+    output["total"] = total
     output["results"] = []
     for result in results:
         values = {

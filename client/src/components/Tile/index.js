@@ -1,6 +1,7 @@
 import React from 'react';
 import SearchForm from "../Forms/SearchForm"
 import UploadForm from "../Forms/UploadForm"
+import ResultBox from "../Display/ResultBox"
 
 function Tile(props) {
     return (
@@ -8,6 +9,7 @@ function Tile(props) {
         <h1>{props.title}</h1>
         {props.searchform && <SearchForm />}
         {props.uploadform && <UploadForm />}
+        {props.results && <ResultBox />}
       </div>
     );
   }
