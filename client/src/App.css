@@ -41,6 +41,10 @@ h1 {
   min-width: 250px;
 }
 
+.UploadForm {
+  padding-bottom: 30px;
+}
+
 .UploadForm input {
   min-width: 200px;
 }

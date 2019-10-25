@@ -14,14 +14,12 @@ def create_dataset():
     source = request.form['source']
     file_type = request.form['file_type']
     link = request.form['link']
-    dictionary = str2bool(request.form['dictionary'])
     date_obtained = request.form['date_obtained']
-    clean = str2bool(request.form['clean'])
     tags = request.form['tags']
     file = request.files['file']
 
-    new_dataset = Dataset(name=name, area=area, source=source, file_type=file_type, link=link, dictionary=dictionary,
-        date_obtained=date_obtained, clean=clean, tags=tags, file=file.read())
+    new_dataset = Dataset(name=name, area=area, source=source, file_type=file_type, link=link,
+        date_obtained=date_obtained, tags=tags, file=file.read())
 
     db.session.add(new_dataset)
     db.session.commit()
@@ -43,9 +41,7 @@ def search_dataset():
             'source' : result.source,
             'file_type' : result.file_type,
             'link' : result.link,
-            'dictionary' : str(bool(result.dictionary)),
             'date_obtained' : result.date_obtained,
-            'clean' : str(bool(result.clean)),
             'tags' : result.tags,
             'id' : result.id,
         }
@@ -64,9 +60,7 @@ def update_dataset(id):
             'source' : ds.source,
             'file_type' : ds.file_type,
             'link' : ds.link,
-            'dictionary' : str(bool(ds.dictionary)),
             'date_obtained' : ds.date_obtained,
-            'clean' : str(bool(ds.clean)),
             'tags' : ds.tags
         }
         return jsonify(output), 200
@@ -79,9 +73,7 @@ def update_dataset(id):
         source = request.form['source']
         file_type = request.form['file_type']
         link = request.form['link']
-        dictionary = str2bool(request.form['dictionary'])
         date_obtained = request.form['date_obtained']
-        clean = str2bool(request.form['clean'])
         tags = request.form['tags']
 
         ds.name = name
@@ -89,9 +81,7 @@ def update_dataset(id):
         ds.source = source
         ds.file_type = file_type
         ds.link = link
-        ds.dictionary = dictionary
         ds.date_obtained = date_obtained
-        ds.clean = clean
         ds.tags = tags
 
         db.session.commit()

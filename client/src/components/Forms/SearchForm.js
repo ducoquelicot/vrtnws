@@ -11,10 +11,6 @@ class SearchForm extends React.PureComponent {
         }
     }
 
-    // componentDidMount = () => {
-    //     console.log(this.props.context)
-    // }
-
     handleSubmit = async event => {
         event.preventDefault();
         const result = await search(this.state.search)

@@ -1,144 +1,137 @@
 import React from 'react';
-import Button from "../Button"
-import useForm from "../../hooks/useForm"
+import Button from '../Button';
+import upload from '../../services/upload';
+// import withContext from '../../utilities/context/AppContextConsumer';
 
-function UploadForm() {
-    const { values, handleChange, handleSubmit } = useForm(Upload);
-   
-     function Upload() {
-       console.log(values);
-     }
-   
-     return (
-       <form className="UploadForm" onSubmit={handleSubmit}>
-         <label>
-           Naam
-           <br />
-           <input
-           name="name"
-           type="text"
-           className="input"
-           onChange={handleChange} />
-         </label>
-         <br />
-         <br />
-         <label>
-           Gebied
-           <br />
-           <input
-           name="area"
-           type="text"
-           className="input"
-           onChange={handleChange} />
-         </label>
-         <br />
-         <br />
-         <label>
-           Bron
-           <br />
-           <input
-           name="source"
-           type="text"
-           className="input"
-           onChange={handleChange} />
-         </label>
-         <br />
-         <br />
-         <label>
-           Bestandstype
-           <br />
-           <select 
-             name="file_type" 
-             onChange={handleChange}
-           >
-             <option value="csv">csv</option>
-             <option value="json">json</option>
-             <option value="pdf">pdf</option>
-             <option value="kml">kml</option>
-             <option value="xlsx">xlsx</option>
-           </select>
-         </label>
-         <br />
-         <br />
-         <label>
-           Link
-           <br />
-           <input
-           name="link"
-           type="text"
-           className="input"
-           onChange={handleChange} />
-         </label>
-         <br />
-         <br />
-         <label>
-           Legenda aanwezig
-           <br />
-           <select
-             name="dictionary"
-             onChange={handleChange}
-           >
-             <option value="True">Ja</option>
-             <option value="False">Nee</option>
-           </select>
-         </label>
-         <br />
-         <br />
-         <label>
-           Downloaddatum
-           <br />
-           <input
-           name="date_obtained"
-           type="text" 
-           className="input"
-           onChange={handleChange} />
-         </label>
-         <br />
-         <br />
-         <label>
-           Gecontroleerd op fouten
-           <br />
-           <select
-             onChange={handleChange}
-             name="clean"
-           >
-             <option value="True">Ja</option>
-             <option value="False">Nee</option>
-           </select>
-         </label>
-         <br />
-         <br />
-         <label>
-           Tags (scheiden met komma)
-           <br />
-           <input 
-           name="tags"
-           type="text"
-           className="input"
-           onChange={handleChange}/>
-         </label>
-         <br />
-         <br />
-         <label>
-           Bestand uploaden
-           <br />
-           <br />
-           <input 
-           type="file"
-           name="file"
-           onChange={handleChange}/>
-         </label>
-         <br />
-         <br />
-         <Button
-         type="submit"
-         handleClick={handleSubmit}
-         label="Upload"
-         />
-         <br />
-         <br />
-       </form>
-     )
-   }
+class UploadForm extends React.PureComponent {
+    constructor(props) {
+        super(props)
+        this.fileInput= React.createRef()
+        this.state={
+            "name" : "",
+            "area" : "",
+            "source" : "",
+            "file_type" : "csv",
+            "link" : "",
+            "date_obtained" : "",
+            "tags" : ""
+        }
+    }
 
-   export default UploadForm
+    handleSubmit = async event => {
+        event.preventDefault();
+        const data = {}
+        Object.keys(this.state).map(i => data[i] = this.state[i])
+        data.file = this.fileInput.current.files[0]
+        upload(data)
+    }
+
+    handleChange = event => {
+        this.setState({
+            [event.target.getAttribute('name')] : event.target.value
+        })
+    }
+
+    render() {
+        return(
+            <form className="UploadForm" onSubmit={this.handleSubmit}>
+            <label>
+              Naam
+              <br />
+              <input
+                name="name"
+                type="text"
+                className="input"
+                onChange={this.handleChange} />
+            </label>
+            <br />
+            <br />
+            <label>
+              Gebied
+              <br />
+              <input
+                name="area"
+                type="text"
+                className="input"
+                onChange={this.handleChange}/>
+            </label>
+            <br />
+            <br />
+            <label>
+              Bron
+              <br />
+              <input
+                name="source"
+                type="text"
+                className="input"
+                onChange={this.handleChange}/>
+            </label>
+            <br />
+            <br />
+            <label>
+              Bestandstype
+              <br />
+              <select 
+                name="file_type" 
+                onChange={this.handleChange}
+              >
+                <option value="csv">csv</option>
+                <option value="json">json</option>
+                <option value="pdf">pdf</option>
+                <option value="kml">kml</option>
+                <option value="xlsx">xlsx</option>
+              </select>
+            </label>
+            <br />
+            <br />
+            <label>
+              Link
+              <br />
+              <input
+                name="link"
+                type="text"
+                className="input"
+                onChange={this.handleChange}/>
+            </label>
+            <br />
+            <br />
+            <label>
+              Downloaddatum
+              <br />
+              <input
+                name="date_obtained"
+                type="text" 
+                className="input"
+                onChange={this.handleChange}/>
+            </label>
+            <br />
+            <br />
+            <label>
+              Tags (scheiden met komma)
+              <br />
+              <input 
+                name="tags"
+                type="text"
+                className="input"
+                onChange={this.handleChange}/>
+            </label>
+            <br />
+            <br />
+            <input 
+                type="file"
+                name="file"
+                ref={this.fileInput}
+            />
+            <br />
+            <br />
+            <Button
+                type="submit"
+                handleClick={this.handleSubmit}
+                label="Upload"
+            />
+          </form>
+        );
+    }
+}
+
+export default UploadForm
