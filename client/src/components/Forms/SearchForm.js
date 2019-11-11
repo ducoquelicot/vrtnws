@@ -18,12 +18,15 @@ class SearchForm extends React.PureComponent {
     }
 
     changeSearch = event => {
-        this.setState({search : event.target.value})
+        this.setState({search : event.target.value.toLowerCase()})
     }
 
     render() {
         return(
             <form className="SearchForm" onSubmit={this.handleSubmit}>
+                <label for="search">
+                    Zoek met AND, OR en wildcards *
+                </label>
                 <input
                     type="text"
                     name="search"

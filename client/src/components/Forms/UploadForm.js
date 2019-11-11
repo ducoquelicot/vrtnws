@@ -28,7 +28,7 @@ class UploadForm extends React.PureComponent {
 
     handleChange = event => {
         this.setState({
-            [event.target.getAttribute('name')] : event.target.value
+            [event.target.getAttribute('name')] : event.target.value.toLowerCase()
         })
     }
 

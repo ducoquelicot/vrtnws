@@ -9,6 +9,7 @@
   border: 1px solid #CBCBCB;
   border-radius: 4px;
   min-height: 300px;
+  /* min-width: 400px; */
   max-width: 100%;
   text-align: center;
   color: rgb(10, 82, 132);
@@ -16,23 +17,25 @@
 }
 
 .Grid {
-  max-width: 1000px;
+  max-width: 860px;
   margin: auto;
   display: grid;
-  grid-gap: 40px;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  align-items: center;
+  grid-gap: 30px 30px;
+  grid-template-columns: repeat(2, 400px);
+  grid-template-rows: 300px 270px 1fr;
+  justify-content: center;
 }
 
 h1 {
-  padding: 20px;
+  margin: 20px;
+  margin-top: 30px;
   font-weight: 600;
   font-size: 30px;
 }
 
 .SearchForm {
   position: absolute;
-  top: 50%;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -61,10 +64,50 @@ h1 {
 }
 
 .Result {
-  margin: 10px;
+  margin: 15px;
+}
+
+.Result p {
+  text-align: left;
 }
 
 a {
   text-decoration: none;
   color: rgb(10, 82, 132);
+}
+
+.Intro {
+  background-color: rgb(255, 255, 255);
+  border: 1px solid #CBCBCB;
+  border-radius: 4px;
+  min-height: 150px;
+  max-width: 790px;
+  text-align: center;
+  color: rgb(10, 82, 132);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  margin: auto;
+  margin-bottom: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+}
+
+div.Intro p {
+  max-width: 80%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+#upload {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: span 2;
+}
+
+#resultaten {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: span 2;
 }

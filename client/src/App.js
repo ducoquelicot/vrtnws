@@ -6,13 +6,16 @@ import withContext from "./utilities/context/AppContextConsumer";
 function App(props) {
 
   return (
-      <div className="Grid">
-        <Tile title="vind een dataset" searchform={true} />
-        {Object.keys(props.ctxt.searchResult).length > 0 &&
-          <Tile title="resultaten" results={true}/>        
-        }
-        <Tile title="upload een dataset" uploadform={true}/>
-      </div>
+      <React.Fragment>
+          <Tile className="Intro" title="database der databases" introduction={true}/>
+        <div className="Grid">
+          <Tile className="Tile" id="zoek" title="vind een dataset" searchform={true} />
+          {Object.keys(props.ctxt.searchResult).length > 0 &&
+            <Tile className="Tile" id="resultaten" title="resultaten" results={true}/>        
+          }
+          <Tile className="Tile" id="upload" title="upload een dataset" uploadform={true}/>
+        </div>
+      </React.Fragment>
   );
 }
 
