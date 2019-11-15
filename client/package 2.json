@@ -27,9 +27,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "cypress": "^3.6.1",
-    "cypress-file-upload": "^3.5.0"
   }
 }
