@@ -13,7 +13,8 @@ def remove_from_index(model):
 
 def query_index(qstring):
     q = Q("query_string",
-            query = qstring,
+            query = "{}~".format(qstring),
+            fuzziness = "AUTO",
             fields = ['name', 'tags']
         )
 
