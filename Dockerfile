@@ -4,10 +4,11 @@ RUN adduser -D ec2-user
 
 WORKDIR /home/server
 
-COPY requirements.txt requirements.txt
-RUN python -m venv venv
-RUN venv/bin/pip install -r requirements.txt
-RUN venv/bin/pip install gunicorn
+COPY Pipfile Pipfile
+RUN pip install --user pipenv
+RUN pipenv install
+RUN pipenv shell
+RUN pipenv install gunicorn
 
 COPY app app
 COPY migrations migrations
@@ -16,8 +17,8 @@ RUN chmod +x boot.sh
 
 ENV FLASK_APP server.py
 
-RUN chown -R server:server ./
-USER server
+RUN chown -R ec2-user:ec2-user ./
+USER ec2-user
 
 EXPOSE 5000
 ENTRYPOINT ["./boot.sh"]
