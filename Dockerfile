@@ -6,9 +6,9 @@ WORKDIR /home/ec2-user
 
 COPY requirements.txt requirements.txt
 RUN python -m venv venv
-RUN pip install --upgrade pip
 RUN venv/bin/pip install -r requirements.txt
 RUN venv/bin/pip install gunicorn
+RUN venv/bin/pip install flask
 
 COPY app app
 COPY migrations migrations
