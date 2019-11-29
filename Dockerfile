@@ -1,12 +1,8 @@
-FROM python:3.7-alpine
+FROM python:3.7-buster
 
-RUN adduser -D ec2-user
+RUN adduser --disabled-password ec2-user
 
 WORKDIR /home/ec2-user
-
-RUN apk add --no-cache --virtual .build-deps gcc musl-dev
-RUN pip install cython
-RUN apk del .build-deps gcc musl-dev
 
 COPY requirements.txt requirements.txt
 RUN python -m venv venv
