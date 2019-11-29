@@ -1,13 +1,16 @@
 FROM python:3.7-alpine
 
-RUN pip install --upgrade pip
-
 RUN adduser -D ec2-user
 
 WORKDIR /home/ec2-user
 
+RUN apk add --no-cache --virtual .build-deps gcc musl-dev
+RUN pip install cython
+RUN apk del .build-deps gcc musl-dev
+
 COPY requirements.txt requirements.txt
 RUN python -m venv venv
+RUN pip install --upgrade pip
 RUN venv/bin/pip install -r requirements.txt
 RUN venv/bin/pip install gunicorn
 
