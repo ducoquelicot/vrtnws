@@ -4,11 +4,10 @@ RUN adduser -D ec2-user
 
 WORKDIR /home/server
 
-COPY Pipfile Pipfile
-RUN pip install --user pipenv
-RUN pipenv install
-RUN pipenv shell
-RUN pipenv install gunicorn
+COPY requirements.txt requirements.txt
+RUN python -m venv venv
+RUN venv/bin/pip install -r requirements.txt
+RUN venv/bin/pip install gunicorn
 
 COPY app app
 COPY migrations migrations
