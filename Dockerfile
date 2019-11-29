@@ -1,8 +1,10 @@
-FROM python:3.6-alpine
+FROM python:3.7-alpine
+
+RUN pip install --upgrade pip
 
 RUN adduser -D ec2-user
 
-WORKDIR /home/server
+WORKDIR /home/ec2-user
 
 COPY requirements.txt requirements.txt
 RUN python -m venv venv
