@@ -100,3 +100,7 @@ def delete_dataset(id):
     db.session.commit()
 
     return jsonify({'status' : 'success'}), 200
+
+@datasets.route('/api/text', methods=['GET'])
+def test_connection():
+    return("Connection is up"), 200

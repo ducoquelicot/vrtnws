@@ -29,7 +29,7 @@ def upgrade():
         sa.Column('date_obtained', sa.String(length=50), nullable=True),
         sa.Column('clean', sa.Boolean(), nullable=True),
         sa.Column('tags', sa.String(length=255), nullable=True),
-        sa.Column('file', sa.LargeBinary(), nullable=True),
+        sa.Column('file', sa.LargeBinary(length=(2**32)-1), nullable=True),
         sa.PrimaryKeyConstraint('id')
     )
 
