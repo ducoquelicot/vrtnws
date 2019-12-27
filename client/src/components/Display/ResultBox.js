@@ -4,7 +4,7 @@ import withContext from "../../utilities/context/AppContextConsumer";
 function ResultBox(props) {
 
     const handleDownload = result_id => {
-        return 'http://localhost:5000/api/download/dataset/' + result_id
+        return 'http://localhost:8000/api/download/dataset/' + result_id
     }
 
     // const handleEdit = result_name => {

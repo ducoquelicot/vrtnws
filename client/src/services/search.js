@@ -7,7 +7,7 @@ const search = async q => {
       }
 
     const query = encodeURIComponent(q)
-    let myRequest = new Request(`http://localhost:5000/api/search_dataset?query=${query}`);
+    let myRequest = new Request(`http://localhost:8000/api/search_dataset?query=${query}`);
 
     const res = await fetch(myRequest, myInit);
 

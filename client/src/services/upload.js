@@ -10,7 +10,7 @@ const upload = async data => {
         body: formData
     }
 
-    let myRequest = new Request('http://localhost:5000/api/add_dataset');
+    let myRequest = new Request('http://localhost:8000/api/add_dataset');
 
     await fetch(myRequest, myInit);
 }
