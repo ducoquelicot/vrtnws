@@ -8,12 +8,17 @@ class AppContextProvider extends React.PureComponent {
     super()
     this.state = {
         setSearchResult : this.setSearchResult,
+        setStatus : this.setStatus,
         ...initialContext
     };
   }
 
   setSearchResult = value => {
       this.setState({searchResult : value})
+  }
+
+  setStatus = value => {
+    this.setState({uploadStatus : value})
   }
 
   render() {

@@ -22,7 +22,7 @@
   display: grid;
   grid-gap: 30px 30px;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  grid-template-rows: 300px 270px 1fr;
+  grid-template-rows: 300px 300px 1fr;
   justify-content: center;
 }
 
@@ -111,6 +111,13 @@ div.Intro p {
   grid-column-end: span 1;
   grid-row-start: 2;
   grid-row-end: span 2;
+}
+
+#status {
+  margin-bottom: 20px;
+  font-size: 17px;
+  font-weight: bold;
+  color: #1D9D21;
 }
 
 @media only screen and (max-width: 1024px) {

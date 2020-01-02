@@ -7,10 +7,6 @@ function ResultBox(props) {
         return 'http://localhost:8000/api/download/dataset/' + result_id
     }
 
-    // const handleEdit = result_name => {
-    //     return 'http://localhost:5000/api/dataset/' + result_name
-    // }
-
     const results = props.ctxt.searchResult.results.map((result) =>
         <div key={result.id} className="Result">
             <hr />

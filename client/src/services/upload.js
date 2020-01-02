@@ -12,7 +12,10 @@ const upload = async data => {
 
     let myRequest = new Request('http://localhost:8000/api/add_dataset');
 
-    await fetch(myRequest, myInit);
+    const res = await fetch(myRequest, myInit);
+    const json = await res.json()
+
+    return json
 }
 
 export default upload

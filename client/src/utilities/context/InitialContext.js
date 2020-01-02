@@ -1,5 +1,6 @@
 const initialContext = {
-    searchResult : {}
+    searchResult : {},
+    uploadStatus : {}
 }
 
 export default initialContext
