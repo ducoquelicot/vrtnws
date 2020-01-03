@@ -1,3 +1,4 @@
 datasets.db
 *.pem
 docker-compose.yml
+.env

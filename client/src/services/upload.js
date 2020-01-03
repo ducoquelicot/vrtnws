@@ -10,7 +10,7 @@ const upload = async data => {
         body: formData
     }
 
-    let myRequest = new Request('http://localhost:8000/api/add_dataset');
+    let myRequest = new Request(`${process.env.REACT_APP_API}http://localhost:8000/api/add_dataset`);
 
     const res = await fetch(myRequest, myInit);
     const json = await res.json()
