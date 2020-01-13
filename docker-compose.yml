@@ -7,7 +7,7 @@ services:
     depends_on:
       - es01
     ports:
-      - "8000:5000"
+      - "1863:5000"
     networks:
       - backend_network
       - esnet
