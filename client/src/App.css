@@ -10,6 +10,7 @@
   border-radius: 4px;
   min-height: 300px;
   max-width: 100%;
+  min-width: 400px;
   text-align: center;
   color: rgb(10, 82, 132);
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
@@ -82,6 +83,7 @@ a {
   border-radius: 4px;
   min-height: 150px;
   max-width: 821px;
+  min-width: 400px;
   text-align: center;
   color: rgb(10, 82, 132);
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
@@ -132,6 +134,10 @@ div.Intro p {
   }
 
   .Tile {
+    max-width: 90%;
+  }
+
+  .Intro {
     max-width: 90%;
   }
 }
