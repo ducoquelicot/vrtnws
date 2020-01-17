@@ -138,6 +138,6 @@ div.Intro p {
   }
 
   .Intro {
-    max-width: 90%;
+    min-width: 105%;
   }
 }
