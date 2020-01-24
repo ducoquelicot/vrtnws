@@ -31,7 +31,7 @@ function ResultBox(props) {
 
     return (
         <div>
-            <h5>{props.ctxt.searchResult.total != 1 ? 'resultaten' : 'resultaat'}</h5>
+            <h5>{props.ctxt.searchResult.total} {props.ctxt.searchResult.total != 1 ? 'resultaten' : 'resultaat'}</h5>
             {results}
         </div>
     );
