@@ -109,9 +109,9 @@ volumes:
     driver: local
   esdata02:
     driver: local
-  # web-root:
-  #   driver: local
-  #   driver_opts:
-  #     type: none
-  #     device: /home/ec2-user/test
-  #     o: bind
+  web-root:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/ec2-user/test
+      o: bind
