@@ -19,6 +19,7 @@ services:
   db:
     image: mysql:5.7
     container_name: database
+    command: --max_allowed_packet=100M
     restart: always
     environment: 
       MYSQL_DATABASE: datasets
