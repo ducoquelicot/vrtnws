@@ -97,9 +97,6 @@ services:
     build: ./client
     ports: 
       - '80:80'
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./nginx/conf.d:/etc/nginx/conf.d
 
 
 networks:
