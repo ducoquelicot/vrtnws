@@ -30,12 +30,11 @@ def create_dataset():
 
         if os.path.exists(filepath):
             new_filename = '{}_{}.{}'.format(filename.rsplit('.', 1)[0], datetime.now.tostrftime('%H%M'), filename.rsplit('.', 1)[1])
-            new_filepath = os.path.join(datasets.config['UPLOAD_FOLDER'], new_filename)
-            file.save(new_filepath, new_filename)
+            file.save(os.path.join(datasets.config['UPLOAD_FOLDER'), new_filename))
             new_dataset = Dataset(name=name, area=area, source=source, file_type=file_type, link=link,
             date_obtained=date_obtained, tags=tags, file=new_filepath)
         else:
-            file.save(filepath, filename)
+            file.save(os.path.join(datasets.config['UPLOAD_FOLDER'], filename))
             new_dataset = Dataset(name=name, area=area, source=source, file_type=file_type, link=link,
             date_obtained=date_obtained, tags=tags, file=filepath)
 
