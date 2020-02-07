@@ -1,10 +1,9 @@
 from app import datasets, db
 from app.models import Dataset, DatasetSchema
 from flask import request, jsonify, send_from_directory
-from str2bool import str2bool
-from io import BytesIO
 from datetime import datetime
 import os
+from werkzeug.utils import secure_filename
 
 data_schema = DatasetSchema()
 datas_schema = DatasetSchema(many=True)
@@ -31,7 +30,7 @@ def create_dataset():
 
         if os.path.exists(filepath):
             new_filename = '{}_{}.{}'.format(filename.rsplit('.', 1)[0], datetime.now.tostrftime('%H%M'), filename.rsplit('.', 1)[1])
-            new_filepath = os.path.join(app.config['UPLOAD_FOLDER'], new_filename)
+            new_filepath = os.path.join(datasets.config['UPLOAD_FOLDER'], new_filename)
             file.save(new_filepath, new_filename)
             new_dataset = Dataset(name=name, area=area, source=source, file_type=file_type, link=link,
             date_obtained=date_obtained, tags=tags, file=new_filepath)

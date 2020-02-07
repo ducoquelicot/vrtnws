@@ -7,6 +7,9 @@ const upload = async data => {
 
     const myInit = {
         method: 'POST',
+        headers: {
+            'X-shared-secret': process.env.REACT_APP_SECRET
+        },
         body: formData
     }
 

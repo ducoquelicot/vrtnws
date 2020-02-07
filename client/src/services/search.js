@@ -2,7 +2,8 @@ const search = async q => {
     const myInit = {
         method: 'GET',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'X-shared-secret': process.env.REACT_APP_SECRET
         }
       }
 
