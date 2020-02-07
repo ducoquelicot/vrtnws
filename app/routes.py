@@ -1,11 +1,18 @@
 from app import datasets, db
 from app.models import Dataset, DatasetSchema
-from flask import request, jsonify, send_file
+from flask import request, jsonify, send_from_directory
 from str2bool import str2bool
 from io import BytesIO
+from datetime import datetime
+import os
 
 data_schema = DatasetSchema()
 datas_schema = DatasetSchema(many=True)
+
+ALLOWED_EXTENSIONS = {'pdf', 'xlsx', 'csv', 'json', 'kml'}
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @datasets.route('/api/add_dataset', methods=['POST'])
 def create_dataset():
@@ -18,8 +25,20 @@ def create_dataset():
     tags = request.form['tags']
     file = request.files['file']
 
-    new_dataset = Dataset(name=name, area=area, source=source, file_type=file_type, link=link,
-        date_obtained=date_obtained, tags=tags, file=file.read())
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        filepath = os.path.join(datasets.config['UPLOAD_FOLDER'], filename)
+
+        if os.path.exists(filepath):
+            new_filename = '{}_{}.{}'.format(filename.rsplit('.', 1)[0], datetime.now.tostrftime('%H%M'), filename.rsplit('.', 1)[1])
+            new_filepath = os.path.join(app.config['UPLOAD_FOLDER'], new_filename)
+            file.save(new_filepath, new_filename)
+            new_dataset = Dataset(name=name, area=area, source=source, file_type=file_type, link=link,
+            date_obtained=date_obtained, tags=tags, file=new_filepath)
+        else:
+            file.save(filepath, filename)
+            new_dataset = Dataset(name=name, area=area, source=source, file_type=file_type, link=link,
+            date_obtained=date_obtained, tags=tags, file=filepath)
 
     db.session.add(new_dataset)
     db.session.commit()
@@ -90,8 +109,8 @@ def update_dataset(id):
 @datasets.route('/api/download/dataset/<id>', methods=['GET'])
 def download_ds(id):
     ds = Dataset.query.get_or_404(id)
-    filename = '{}.{}'.format(ds.name, ds.file_type.lower())
-    return send_file(BytesIO(ds.file), attachment_filename=filename, as_attachment=True)
+    filename = os.path.basename(ds.file)
+    return send_from_directory(datasets.config['UPLOAD_FOLDER'], filename=filename, attachment_filename=filename, as_attachment=True)
 
 @datasets.route('/api/delete/dataset/<id>', methods=['DELETE'])
 def delete_dataset(id):

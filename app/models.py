@@ -53,7 +53,7 @@ class Dataset(SearchableMixin, db.Model):
     date_obtained = db.Column(db.String(50))
     clean = db.Column(db.Boolean)
     tags = db.Column(db.Text, index=True)
-    file = db.Column(db.LargeBinary)
+    file = db.Column(db.String(100))
 
     def __repr__(self):
         return "Dataset: {}. Source: {}. Tags: {}".format(self.name, self.source, self.tags)
