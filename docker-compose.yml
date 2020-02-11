@@ -16,7 +16,7 @@ services:
     environment: 
       ELASTICSEARCH_URL: http://es01:9200
       DATABASE_URL: mysql+pymysql://ec2-user:Dontsaveaprayerformenow@db:3306/datasets
-      UPLOAD_FOLDER: /uploads
+      UPLOAD_FOLDER: uploads
   db:
     image: mysql:5.7
     container_name: database
