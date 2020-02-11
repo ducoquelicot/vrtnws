@@ -109,8 +109,8 @@ def update_dataset(id):
 def download_ds(id):
     ds = Dataset.query.get_or_404(id)
     filename = os.path.basename(ds.file)
-    filepath = os.path.join(datasets.config['UPLOAD_FOLDER'], filename)
-    return send_from_directory(datasets.config['UPLOAD_FOLDER'], filename=filename, attachment_filename=filename, as_attachment=True)
+    filepath = os.path.join(datasets.root_path, datasets.config['UPLOAD_FOLDER'])
+    return send_from_directory(directory=filepath, filename=filename, attachment_filename=filename, as_attachment=True)
     # return jsonify({"path": filepath})
 
 @datasets.route('/api/delete/dataset/<id>', methods=['DELETE'])
