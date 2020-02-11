@@ -116,6 +116,10 @@ def download_ds(id):
 @datasets.route('/api/delete/dataset/<id>', methods=['DELETE'])
 def delete_dataset(id):
     ds = Dataset.query.get_or_404(id)
+    filename = os.path.basename(ds.file)
+    location = '/home/ec2-user/uploads'
+    filepath = os.path.join(location, filename)
+    os.remove(filepath)
     db.session.delete(ds)
     db.session.commit()
 
