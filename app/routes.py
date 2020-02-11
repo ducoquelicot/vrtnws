@@ -110,7 +110,7 @@ def download_ds(id):
     ds = Dataset.query.get_or_404(id)
     filename = os.path.basename(ds.file)
     # filepath = os.path.join(datasets.root_path, datasets.config['UPLOAD_FOLDER'])
-    return send_from_directory(directory='/home/ec2-user/', filename=filename, attachment_filename=filename, as_attachment=True)
+    return send_from_directory(directory='/home/ec2-user/uploads/', filename=filename, attachment_filename=filename, as_attachment=True)
     # return jsonify({"path": filepath})
 
 @datasets.route('/api/delete/dataset/<id>', methods=['DELETE'])
