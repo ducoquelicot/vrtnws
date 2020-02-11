@@ -13,7 +13,7 @@ RUN venv/bin/pip install gunicorn[gevent]
 RUN venv/bin/pip install flask
 
 COPY app app
-RUN mkdir app/uploads
+RUN mkdir uploads
 COPY migrations migrations
 COPY server.py config.py boot.sh ./
 RUN chmod +x boot.sh
