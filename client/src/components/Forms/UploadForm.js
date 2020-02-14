@@ -22,6 +22,7 @@ class UploadForm extends React.PureComponent {
 
   handleSubmit = async event => {
     event.preventDefault();
+    this.props.ctxt.setStatus({"status": "uploading"})
     const data = {}
     Object.keys(this.state).map(i => data[i] = this.state[i])
     data.file = this.fileInput.current.files[0]
@@ -31,13 +32,17 @@ class UploadForm extends React.PureComponent {
       'name': '', 'area': '', 'source': '', 'file_type': '', 'link': '', 'date_obtained': '', 'tags': '', inputKey: Date.now()
     })
 
-    if (this.props.ctxt.uploadStatus.status == 'success') {
+    if (this.props.ctxt.uploadStatus.status == 'uploading') {
       this.setState({
-        message: "Dataset succesvol geüpload."
+        message: "Dataset wordt geupload..."
+      })
+    } else if (this.props.ctxt.uploadStatus.status == 'success') {
+      this.setState({
+        message: "Dataset is succesvol geüpload."
       })
     } else {
       this.setState({
-        message: "Er is iets misgegaan. Probeer het later opnieuw."
+        message: "Er is iets misgegaan, probeer later opnieuw."
       })
     }
   }
@@ -52,7 +57,7 @@ class UploadForm extends React.PureComponent {
     return(
       <React.Fragment>
 
-        {this.props.ctxt.uploadStatus.status !== undefined &&
+        {this.state.message !== "" &&
           <div id="status">
             {this.state.message}
           </div>

@@ -29,7 +29,7 @@ def create_dataset():
         filepath = os.path.join(datasets.config['UPLOAD_FOLDER'], filename)
 
         if os.path.exists(filepath):
-            new_filename = '{}_{}.{}'.format(filename.rsplit('.', 1)[0], datetime.now.tostrftime('%H%M'), filename.rsplit('.', 1)[1])
+            new_filename = '{}_{}.{}'.format(filename.rsplit('.', 1)[0], datetime.now.strftime('%H%M'), filename.rsplit('.', 1)[1])
             new_filepath = os.path.join(datasets.config['UPLOAD_FOLDER'], new_filename)
             file.save(os.path.join(datasets.config['UPLOAD_FOLDER'], new_filename))
             new_dataset = Dataset(name=name, area=area, source=source, file_type=file_type, link=link,
